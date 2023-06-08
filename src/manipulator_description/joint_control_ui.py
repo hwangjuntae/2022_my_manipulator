@@ -19,7 +19,7 @@ class JointControlUI(QMainWindow):
         layout.addWidget(QLabel(f"Joint {joint_name} Control"))
         layout.addWidget(self.slider)
         
-        widget = QWidget()
+        widget = QWidgeWt()
         widget.setLayout(layout)
         self.setCentralWidget(widget)
         
