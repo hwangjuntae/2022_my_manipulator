@@ -1,0 +1,38 @@
+<launch>
+  <!-- Load the manipulator URDF -->
+  <arg name="urdf_file" default="$(find manipulator_description)/urdf/manipulator.urdf"/>
+
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg urdf_file)"/>
+
+  <!-- Load the joint state controller -->
+  <node name="joint_state_controller" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="joint_state_controller"/>
+
+  <!-- Load the effort controllers for each joint -->
+  <node name="Revolute_48_controller" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="Revolute_48_controller"/>
+
+  <node name="Revolute_50_controller" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="Revolute_50_controller"/>
+
+  <node name="Revolute_52_controller" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="Revolute_52_controller"/>
+
+  <node name="Revolute_54_controller" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="Revolute_54_controller"/>
+
+  <node name="Revolute_56_controller" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="Revolute_56_controller"/>
+
+  <node name="Revolute_59_controller" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="Revolute_59_controller"/>
+
+  <!-- Load the robot state publisher -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen"/>
+
+  <!-- Load the Gazebo simulator -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find manipulator_gazebo)/worlds/empty.world"/>
+  </include>
+</launch>
